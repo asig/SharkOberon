@@ -1,0 +1,195 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+
+<HEAD>
+<META  name="description" content="The DIGITAL Network Appliance Reference
+Design provides a hardware and software foundation for the world's highest
+performance Network Computer products. ">
+<META  name="keywords" content="NC, Network Computer, thin client, Java">
+<SCRIPT LANGUAGE="JavaScript">
+<!-- NETSCAPE 2.0 SECTION.
+function rollon(){}
+function rolloff(){}
+// -->
+</SCRIPT>
+<SCRIPT LANGUAGE="JavaScript1.1">
+<!-- NETSCAPE 3 SECTION.  Hide JavaScript from obsolete browsers
+bName = navigator.appName;
+bVer = parseInt(navigator.appVersion);
+
+if (bName == "Netscape" && bVer >= 3) ver = "n3";
+else ver = "xx";
+
+if (ver == "n3") {
+
+dhmon = new Image(84,16);
+dhmon.src = "pics/home-button/T3.gif";
+dhmoff = new Image(84,16);
+dhmoff.src = "pics/home-button/T1.gif";
+fedon = new Image(60,16);
+fedon.src = "pics/feedback-button/T3.gif";
+fedoff = new Image(60,16);
+fedoff.src = "pics/feedback-button/T1.gif";
+}
+
+function rollon(imgName) {
+	if (ver == "n3") {
+	imgOn = eval(imgName + "on.src");
+	document[imgName].src = imgOn;
+}
+}
+
+function rolloff(imgName) {
+	if (ver == "n3") {
+	document[imgName].src = eval(imgName + "off.src");
+}
+}
+
+// -->
+</SCRIPT>
+
+	<META NAME="GENERATOR" Content="Visual Page 1.0 for Windows">
+	<META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=iso-8859-1">
+	<TITLE>DNARD: Software download</TITLE>
+</HEAD>
+
+<BODY BACKGROUND="pics/backgrndbur.gif" TEXT="#000000" LINK="#003399" VLINK="#555555">
+
+<P>
+<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="0">
+	<TR>
+		<TD WIDTH="120" ALIGN="RIGHT" VALIGN="TOP">
+			<P ALIGN="RIGHT"><IMG SRC="pics/digital-logo-80pt.gif" WIDTH="82" HEIGHT="26" ALIGN="RIGHT" ALT="DIGITAL logo"
+			BORDER="0" HSPACE="10">
+		</TD>
+		<TD WIDTH="20" ALIGN="CENTER" VALIGN="TOP">
+			<P ALIGN="CENTER">&nbsp;
+		</TD>
+		<TD WIDTH="460" VALIGN="TOP"><IMG SRC="pics/DNARD-header.gif" WIDTH="480" HEIGHT="45" ALIGN="TOP" ALT="DNARD Web Site" BORDER="0"></TD>
+	</TR>
+	<TR>
+		<TD WIDTH="120" ALIGN="RIGHT" VALIGN="TOP">
+			<P ALIGN="RIGHT">&nbsp;
+		</TD>
+		<TD WIDTH="20" ALIGN="CENTER" VALIGN="TOP">
+			<P ALIGN="CENTER">&nbsp;
+		</TD>
+		<TD WIDTH="460">&nbsp;</TD>
+	</TR>
+	<TR>
+		<TD WIDTH="120"></TD>
+		<TD WIDTH="20" ALIGN="CENTER" VALIGN="TOP">
+			<P ALIGN="CENTER">&nbsp;
+		</TD>
+		<TD WIDTH="460" VALIGN="TOP"></TD>
+	</TR>
+</TABLE>
+
+
+
+<BLOCKQUOTE>
+	<P><FONT COLOR="#990033" FACE="Arial"><STRONG>D</STRONG></FONT><FONT SIZE="2" COLOR="#990033" FACE="Arial"><STRONG>IGITAL</STRONG></FONT><FONT
+	COLOR="#990033" FACE="Arial"><STRONG> Network Appliance Reference Design: software download</STRONG></FONT></P>
+	<P>The following software is intended for use in an environment consisting of one or more DNARD Network Computers
+	and a supporting server, which is typically an x86 PC running FreeBSD.</P>
+	<P>Instructions for using these files to set up such an environment are provided in:
+
+	<UL>
+	<LI>The <A HREF="ftp://gatekeeper.dec.com/private/shark1/dnardug.pdf">DNARD User's Guide</A> (Adobe PDF format)
+	</UL>
+
+	<P>See also the <A HREF="buglist.html">bug listpage</A> for a list of known bugs.</P>
+	<P><B>NOTE:</B> These sourcefiles (NetBSD and XFree86, dated 7 April 1998) and client file system image (dated
+	13 April 1998) represent a complete clean rebuild of the system, including the GNU tools. In particular, this update
+	brings the DNARD software up to release 1.3 of NetBSD. We recommend that all current DNARD partners download these
+	files and do a full upgrade of their existing servers. (Naturally, the source snapshots are needed only for those
+	components that you are planning to rebuild.)
+	<H3>DNARD client software</H3>
+
+	<UL>
+	<LI><B>NetBSD Operating System</B> -- based on NetBSD 1.3
+	<UL>
+		<LI><A HREF="ftp://gatekeeper.dec.com/private/shark1/netbsd-19980407-src.tar.gz">full sources</A> (1998.04.07 --
+		55MB)
+		<LI><A HREF="ftp://gatekeeper.dec.com/private/shark1/netbsd-19980407-sys-src.tar.gz">kernel-only sources</A> (1998.04.07
+		-- 11MB)
+	</UL>
+	<LI><B>XFree86 X-server</B> -- based on XFree86 3.3
+	<UL>
+		<LI><A HREF="ftp://gatekeeper.dec.com/private/shark1/xf86-19980407-src.tar.gz">full sources</A> (1998.04.07 --
+		37MB)
+		<LI><A HREF="ftp://gatekeeper.dec.com/private/shark1/xf86-19980407-diffs3.3.gz">source diffs</A> from XFree86 3.3
+		release (1998.04.07 -- 61KB)
+	</UL>
+	<LI><B>Client file system image</B>
+	<UL>
+		<LI>root filesystem
+		<UL>
+			<LI><A HREF="ftp://gatekeeper.dec.com/private/shark1/root-19980413.tar.gz">root with /etc </A>(1998.04.13 -- 5.7MB)
+			for installing new servers
+			<LI><A HREF="ftp://gatekeeper.dec.com/private/shark1/root-etc-19980413.tar.gz">root without /etc </A>(1998.04.13
+			-- 5.6MB) for upgrading existing servers<BR>
+			<FONT SIZE="2"><B>Note:</B> Remove &quot;-etc&quot; from filename before upgrading</FONT>
+			<UL>
+				<LI><A HREF="ftp://gatekeeper.dec.com/private/shark1/etc-19980413.tar.gz">/etc only</A> as example of proper setup
+				for NetBSD 1.3
+			</UL>
+		</UL>
+		<LI><A HREF="ftp://gatekeeper.dec.com/private/shark1/usr-19980413.tar.gz">/usr filesystem</A> (1998.04.13 -- 23MB)
+		<LI><A HREF="ftp://gatekeeper.dec.com/private/shark1/X11-19980413.tar.gz">/usr/X11 filesystem</A> X Window System
+		(1998.04.13 -- 20MB)
+	</UL>
+	</UL>
+
+	<H3>Server software</H3>
+
+	<UL>
+	<LI><B>DHCP server</B>
+	<UL>
+		<LI><A HREF="ftp://gatekeeper.dec.com/private/shark1/dhcp-freebsd-19970724.tar.gz">executable</A> for FreeBSD (1997.07.24
+		-- 150KB)
+		<LI><A HREF="ftp://gatekeeper.dec.com/private/shark1/dhcp-dunix-19970827.tar.gz">executable</A> for D<FONT SIZE="2">IGITAL</FONT>
+		UNIX (1997.08.27 -- 150KB)
+	</UL>
+	<LI><B>Server Configuration Utility</B>
+	<UL>
+		<LI><A HREF="ftp://gatekeeper.dec.com/private/shark1/config-util-19971114.tar.gz">complete kit</A> (1997.11.14
+		-- 650KB)
+	</UL>
+	</UL>
+
+	<P><FONT SIZE="2"><B>Note 1:</B> All of the above links are ftp-based. The easiest way to download is to simply<BR>
+	click on them in the browser. (If necessary, force file-save -- e.g. shift-click in Netscape <BR>
+	Navigator.) If Internet transmission problems make the larger files difficult to download, <BR>
+	you may wish to note the URLs and use a standalone ftp client that provides a &quot;reget&quot; <BR>
+	command.</FONT></P>
+
+	<P><IMG SRC="pics/newredbar.gif" WIDTH="445" HEIGHT="9" ALIGN="BOTTOM" ALT="Burgundy bar" BORDER="0"> <BR>
+	<NOBR> <!-- This is the rollover javascript for the nav buttons --> <A HREF="http://www.digital.com/" ONMOUSEOVER="rollon('dhm'); return false"
+	ONMOUSEOUT="rolloff('dhm'); return false"><IMG SRC="pics/home-button/T1.gif" WIDTH="84" HEIGHT="16" ALIGN="BOTTOM"
+	ALT="DIGITAL Home Page" BORDER="0" NAME="dhm"></A> &nbsp;&nbsp; <A HREF="mailto:DNARD@pa.dec.com" ONMOUSEOVER="rollon('fed'); return false"
+	ONMOUSEOUT="rolloff('fed'); return false"><IMG SRC="pics/feedback-button/T1.gif" WIDTH="60" HEIGHT="16" ALIGN="BOTTOM"
+	ALT="Feedback to DNARD Webmaster" BORDER="0" NAME="fed"></A> </NOBR> <BR>
+	Updated: <EM>14 April 1998</EM><BR>
+	<HR WIDTH="100%"></P>
+
+<P>Copyright (c) 1997 by Digital Equipment Corporation</P>
+
+<P>Permission to use, copy, modify, and distribute this documentation for
+any purpose and without fee is hereby granted, provided that the above
+copyright notice and this permission notice appear in all copies, and that
+the name of Digital Equipment Corporation not be used in advertising or
+publicity pertaining to distribution of the document without specific,
+written prior permission.</P>
+
+<P>Digital Equipment Corporation makes no representations about the suitability
+of this documentation for any purpose. It is provided &quot;as is&quot;
+without express or implied warranty. Full details are given in the <a href=http://www.digital.com/info/tm.html>legal notice</a> covering all DIGITAL web sites.<P>
+
+
+
+	</BLOCKQUOTE>
+
+</BODY>
+
+</HTML>

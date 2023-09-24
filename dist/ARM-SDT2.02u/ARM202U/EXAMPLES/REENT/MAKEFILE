@@ -1,0 +1,101 @@
+# Copyright (C) Advanced RISC Machines Limited 1994. All rights reserved.
+# Makefile for shared string library (reentrant APCS) example.
+
+CLIBSRC=../../cl
+CC=armcc
+LD=armlink
+AS=armasm
+SD=armsd
+
+# If you change -li below and in the $(SD) command later, you MUST change
+# config.h to #define BYTESEX_ODD, not BYTESEX_EVEN. This Makefile and all
+# the sources it uses assume little-endian operation.
+
+RCFLAGS=-li -apcs 3/32bit/reent -zps1
+RAFLAGS=-li -apcs 3/32bit/reent
+
+.SILENT:
+
+all:
+	echo "Use 'make run' to run the test"
+	echo "Use 'make build' to build the test"
+	echo "Use 'make clean' to tidy up afterwards"
+
+# A armsd.ini file is used to load the shared string library so that its
+# EFT starts at 0x4000 (built in to dynlink.s - see below). You can alter
+# this provided you do so carefully...
+
+build: rstub.o strtest armsd.ini
+	echo "Now use 'make run' to run the test"
+
+run: strlib strtest armsd.ini
+	$(SD) -li strtest
+	echo "Now use 'make clean' to tidy up"
+
+clean:
+	rm -f armsd.ini map maplib strtest strlib *.o
+
+# Here we make a sharable library out of the ANSI C Library's string functions.
+# We make a reentrant stub for use with a reentrant client.
+
+rstub.o: string.o
+	echo Making strlib and rstub.o
+	echo "Please ignore (Warning) Attribute conflict"
+	echo ""
+	$(LD) -o rstub.o -reent -s - -shl strshl -map string.o > maplib
+	@echo Made strlib and a matching reentrant stub
+
+# The armsd.ini file instructs armsd to load the shared string library so its
+# EFT is located at the address assumed by dynlink.s. Here, we grep the
+# assumed address from dynlink.s and the EFT's offset from the library's
+# map file (maplib). We load the library at <address>-<EFT offset>.
+# eg.
+# armsd: getfile strlib 0x40000-0x0009c8
+#                               ^^^^^^^^ value of EFT$$Offset from maplib
+# armsd: go
+
+armsd.ini: dynlink.s maplib
+	echo Making $@
+	fgrep 'EFT Address' dynlink.s | \
+	    awk '{printf "getfile strlib %s",$$4}' - > armsd.ini
+	fgrep 'EFT$$$$Offset' maplib | awk '{printf "-0x%s\n",$$2}' - >> armsd.ini
+
+# We use a local dummy copy of interns.h and a local copy of config.h which
+# patches around some deficiencies in the library sources prior to r1.6.2.
+
+string.o: $(CLIBSRC)/string.c interns.h config.h
+	echo Making $@
+	$(CC) $(RCFLAGS) -c -I. $(CLIBSRC)/string.c
+
+# Here we link the test program with:
+#  -  the dynamic linker (dynlink.o)
+#  -  the reentrant stub of the library
+#  -  a small piece of startup code which provides the same run-line
+#     environment as a fully reentrant, shared C library kernel would provide.
+
+strtest: strtest.o dynlink.o main.o
+	echo Making $@
+	echo "Please ignore (Waring) Attribute conflict"
+	echo ""
+	$(LD) -d -o strtest strtest.o dynlink.o rstub.o main.o -map > map
+
+strtest.o: strtest.c
+	echo Making $@
+	$(CC) $(RCFLAGS) -c strtest.c
+
+dynlink.o: dynlink.s
+	echo Making $@
+	$(AS) $(RAFLAGS) dynlink.s dynlink.o
+
+main.o: main.s
+	echo Making $@
+	$(AS) $(RAFLAGS) main.s main.o
+
+# Null dependencies
+
+maplib: rstub.o
+
+strlib: rstub.o
+
+dynlink.s:
+

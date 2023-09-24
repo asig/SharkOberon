@@ -1,0 +1,2 @@
+bert(0x9000) uue.o
+fred(0x9000) getdata.o

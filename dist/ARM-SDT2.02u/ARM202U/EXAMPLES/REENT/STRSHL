@@ -1,0 +1,34 @@
+> strlib \
+  0x40000
+
+; Include an image of the initialised data in the library itself.
+; Dynlink will copy this at run time to a zero-initialised area
+; reserved by the stub.
+
++()
+
+; Functions exported from the sharable string library 
+
+memcpy
+memmove
+memchr
+memcmp
+strcat
+strchr
+strcmp
+strcoll
+__set_strcoll_table
+strcpy
+strcspn
+strerror
+_strerror
+strlen
+strncat
+strncmp
+strncpy
+strpbrk
+strrchr
+strspn
+strstr
+strtok
+strxfrm

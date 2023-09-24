@@ -1,0 +1,573 @@
+<html>
+<head>
+<!-- Copyright (c) 1996 The NetBSD Foundation, Inc.  ALL RIGHTS RESERVED. -->
+<link rev="made" href="mailto:www@NetBSD.ORG">
+<title>The NetBSD FAQ</title>
+</head>
+<body bgcolor="#FFFFFF" text="#000000">
+
+<h1 align="center">Welcome to the NetBSD FAQ</h1>
+
+This is just a placeholder for now, though we welcome any
+<a href="../Misc/feedback.html">comments or suggestions</a>.
+
+<p>
+<table><tr><td colspan=2>
+<h2>NetBSD ports</h2>
+</td><td>
+<h2>Other links</h2>
+</td></tr><tr><td valign=top>
+<ul>
+    <li><a href="../Ports/alpha/faq.html">
+	alpha</a>
+    <li><a href="../Ports/atari/faq.html">
+	atari</a>
+    <li><a href="../Ports/hp300/faq.html">
+	hp300</a>
+    <li><a href="../Ports/i386/faq.html">
+	i386</a>
+</ul>
+</td><td valign=top>
+<ul>
+    <li><a href="../Ports/pmax/faq.html">
+	pmax</a>
+    <li><a href="../Ports/mac68k/faq/">
+	mac68k</a>
+    <li><a href="http://vaxine.bitcon.no/">
+	vax</a>
+</ul>
+
+</td><td valign=top>
+
+<ul>
+    <li><a href="http://cynjut.neonramp.com/index.html">
+	The 'real' *BSD FAQ</a>
+    <li><a href="../Documentation/netbsd/packages.html">
+	NetBSD packages collection</a>
+    <li><a href="http://sun-www.picarefy.com/sun-www/OLD/index.html">
+	The Sun Hardware Reference FAQ</a>
+</ul>
+
+</td></tr></table>
+
+
+<hr>
+<h2>Kernel</h2>
+<ul>
+<li><a href="#where_to_download_kernel_source">
+	Where to download kernel source</a>
+<li><a href="#how_to_build_a_kernel">
+	How to build a kernel</a>
+<li><a href="#problems_compiling_a_current_kernel">
+	Problems compiling a -current kernel</a>
+<li><a href="#how_to_debug_a_kernel_crash_dump">
+	How to debug a kernel crash dump</a>
+<li><a href="#plip_support">
+	Is PLIP (Parallel Line IP) supported</a>
+<li><a href="#how_to_add_a_kernel_to_a_boot_floppy">
+	How to add a kernel to a boot floppy</a>
+</ul>
+
+<hr>
+<h2>Installing/compiling other programs</h2>
+<ul>
+<li><a href="#precompiled_packages">
+	Where to find precompiled programs</a>
+<li><a href="#packages">
+	How to build/download programs</a>
+<li><a href="#unlimit">
+	Compiling fails with '<b>virtual memory exhausted</b>'</a>
+</ul>
+
+<hr>
+<h2>The X Windowing System</h2>
+<ul>
+    <li><a href="http://www.xfree86.org/FAQ/index.html#SectionB">
+	XFree86 FAQ</a>
+<li><a href="#unable_to_run_x">
+	Unable to run X - '<b>xinit: not found</b>'</a>
+<li><a href="#shared_libraries_and_x">
+	X programs fail with '<b>lib<em>XXXX</em>.so.<em>NN</em>: No such file...</b>'</a>
+<li><a href="#xconsole">
+	Console output (such as from 'su') garbles X display.</a>
+<li><a href="#unable_to_locate_xm">
+	Compiling X programs fail - <b>unable to locate libXm</b></a>
+<li><a href="#unable_to_locate_xpm">
+	Compiling X programs fail - <b>unable to locate xpm.h</b></a>
+</ul>
+
+<hr>
+<h2>User configuration</h2>
+<ul>
+<li><a href="#problems_becoming_root">
+	Problems logging in as, or 'su'ing to, root</a>
+<li><a href="#how_to_add_something_to_your_path">
+	How to add something to your path</a>
+<li><a href="#setting_something_for_all_users">
+	Setting something for all users</a>
+</ul>
+
+<hr>
+<h2>Networking</h2>
+<ul>
+<li><a href="#running_appletalk">
+	Running Appletalk</a>
+<li><a href="http://radon.moof.ai.mit.edu/~armenb/ipnat.html">Network
+    Address Translation (NAT) FAQ</a>, using
+    <a href="http://coombs.anu.edu.au/~avalon/ip-filter.html">IP-Filter</a>.
+<li><a
+    href="http://rfhs8012.fh-regensburg.de/~feyrer/NetBSD/NWF/">
+    NetBSD/amiga Guide to Networking FAQ</a>
+<li><a href="http://www.macbsd.com/macbsd/howto/index.html">
+    PPP, cross compiling, and other HOW-TOs</a>
+<li><a
+    href="http://world.std.com/~bdc/projects/vaxen/VAX-netboot-HOWTO.html">
+    NetBSD/VAX netboot HOWTO</a>
+</ul>
+
+<hr>
+<h2>Misc</h2>
+<ul>
+<li><a href="#rebuilding_dev">
+	Rebuilding /dev</a>
+<li><a href="#connecting_a_ups">
+	Connecting a UPS to a NetBSD system</a>
+<li><a href="#hash_map_Alias0">
+	What does '<b>hash map "Alias0":unsafe map file /etc/aliases:
+	No such file or directory</b>' mean </a>
+</ul>
+
+
+<p><hr><h3><a name="where_to_download_kernel_source">
+	Where to download kernel source
+</a></h3>
+<h4><a name="official_release_kernel_source">Official release
+source</a></h4> The kernel source for a given release is held in the
+gzipped tarfile 'source/sets/syssrc.tgz' under the main directory for
+that release. For example NetBSD 1.3.2 kernel source is in the file:
+<pre>   <a
+href="ftp://ftp.netbsd.org/pub/NetBSD/NetBSD-1.3.2/source/sets/syssrc.tgz">/pub/NetBSD/NetBSD-1.3.2/source/sets/syssrc.tgz</a></pre>
+If you have a <a href="http://www.netbsd.com">NetBSD CD-Rom</a>, the
+'source/sets/syssrc.tgz' file should be included. The source can be
+extracted anywhere, though the traditional location is inside /usr/src.
+To extract use "<b><tt>cd / ; tar xvzpf &lt;FILENAME&gt;</tt></b>".
+<p> <h4>'Bleeding edge' -current source, for the adventurous only!</h4>
+The latest kernel sources are available from ftp.netbsd.org or one of
+the mirrors in the directory <a
+href="ftp://ftp.netbsd.org/pub/NetBSD/NetBSD-current/src/sys/">/pub/NetBSD/NetBSD-current/src/sys/</a>.<br>
+To compile a kernel you should download the following from <a
+href="ftp://ftp.netbsd.org/pub/NetBSD/NetBSD-current/tar_files/src/">
+/pub/NetBSD/NetBSD-current/tar_files/src</a>:  <ul>
+   <li><a
+   href="ftp://ftp.netbsd.org/pub/NetBSD/NetBSD-current/tar_files/src/config.tar.gz">config.tar.gz</a>
+   (Source for the 'config' program) <li><a
+   href="ftp://ftp.netbsd.org/pub/NetBSD/NetBSD-current/tar_files/src/sys.tar.gz">sys.tar.gz</a>
+   (Complete kernel source for all architectures) </ul> You should
+first build and install the 'config' program, in case it has changed
+since the version you are running. Since -current is on the active edge
+of NetBSD development, there can be <a
+href="#problems_compiling_a_current_kernel">problems compiling a
+-current kernel</a>. You are recommended to use source from an <a
+href="#official_release_kernel_source">Official Release</a> until you
+are familiar with the configuration process.
+
+<p><hr><h3><a name="how_to_build_a_kernel">
+	How to build a kernel
+</a></h3>
+<ol>
+    <li>Download and extract the kernel source (see
+	<a href="#where_to_download_kernel_source">Where to download kernel
+	source</a>).
+ <p><li>"<b><tt>cd /sys/arch/&lt;ARCH&gt;/conf</tt></b>"<br>
+	where &lt;ARCH&gt; is your machine's architecture such as 'i386',
+	'sparc', 'mac68k'.
+ <p><li>"<b><tt>cp GENERIC &lt;MYCONF&gt;</tt></b>"<br>
+	where &lt;MYCONF&gt; is your name for this configuration. You could use
+	your hostname, the machine type, or even your first name. Keep to
+	letters, numbers, and _ characters.
+ <p><li><b>Edit &lt;MYCONF&gt;</b><br>
+	Initially you can skip this stage.
+	You can remove drivers for CPU types, hardware, and devices you do
+	not have or use, or even enable options, such as on i386 commenting out
+	the 'pc0' line and enabling the 'vt0' to gain virtual consoles.
+	A good start to determing what hardware drivers you definitely need to
+	keep is to read the output of "<b><tt>dmesg</tt></b>" or
+	"<b><tt>dmesg | grep ' at '</tt></b>".  For evey line containing
+	'&lt;XXX&gt; at &lt;YYY&gt;' you need to keep the entries for both
+	&lt;XXX&gt; and &lt;YYY&gt;. You should also read "<b><tt>man 4
+	options</tt></b>"
+	for information on the different kernel configuration options.
+ <p><li>"<b><tt>config &lt;MYCONF&gt;</tt></b>"<br>
+	This will generate the kernel build directory for &lt;MYCONF&gt;.
+ <p><li>"<b><tt>cd ../compile/&lt;MYCONF&gt;</tt></b>"<br>
+	Change to the kernel build directory.
+ <p><li>"<b><tt>make depend</tt></b>"<br>
+	This generates a '.depend' file that enables the make program to what
+	needs to be rebuilt (at this point it will be everything!).
+ <p><li>"<b><tt>make</tt></b>"<br>
+	This will compile the kernel. If all goes well you will be left with a
+	'netbsd' kernel. This may take some significant time if you are on a
+	VAX, very little time on a big Alpha, and somewhere inbetween for the
+	rest of us.
+ <p><li>"<b><tt>mv /netbsd /netbsd.old ; mv netbsd /</tt></b>"<br>
+	This saves your current kernel, (_very_ important), and moves the new
+	kernel ready to be booted.
+ <p><li>"<b><tt>reboot</tt></b>"<br>
+	This should reboot using your new kernel - the boot messages should
+	contain a line of the form:
+	'NetBSD &lt;VERSION&gt; (&lt;MYCONF&gt;) #0: &lt;COMPILE_DATE&gt;
+
+ <p><li><b>If you have any problems:</b><br>
+	You should boot your 'netbsd.old' kernel in single user mode. The
+	procedure varies from port to port depending on the boot procedure,
+	but on i386 it would be:
+	<ol>
+	    <li><b>Press <tt>SPACE</tt> when the first NetBSD message appears</b></li>
+	    <li>"<b><tt>boot -s netbsd.old</tt></b>"</li>
+	</ol>
+	<p>
+	Then swap your kernel back:
+	<ol>
+	    <li>"<b><tt>fsck /</tt></b>"</li>
+	    <li>"<b><tt>mount /</tt></b>"</li>
+	    <li>"<b><tt>mv netbsd.old netbsd</tt></b>"</li>
+	    <li>"<b><tt>exit</tt></b>"</li>
+	</ol>
+	</p>
+</ol>
+
+<p><hr><h3><a name="problems_compiling_a_current_kernel">
+	Problems compiling a -current kernel
+</a></h3>
+The first point to note is you should subscribe to the
+<a href="../MailingLists/index.html#current-users">current-users</a> mail list.
+Tracking -current without reading current-users is akin to driving in the dark
+without any lights. You have been warned :).<p>
+It is always worth downloading the latest
+<a href="ftp://ftp.netbsd.org/pub/NetBSD/NetBSD-current/tar_files/src/config.tar.gz">config.tar.gz</a>, compiling, installing and rerunning on your config
+file - config changes reasonably frequently between releases.
+
+<p><hr><h3><a name="how_to_debug_a_kernel_crash_dump">
+	How to debug a kernel crash dump
+</a></h3>
+<ul>
+<li>Ensure you have <a href="#how_to_build_a_kernel">built a kernel</a> with
+    DEBUG enabled in the config file.
+<li>"<b><tt>gdb netbsd.gdb</tt></b>" (in kernel compile directory).
+<li>"<b><tt>target kcore /var/crash/netbsd.0.core</tt></b>" at the gdb prompt.
+</ul>
+You can use the usual gdb commands, such as 't'.
+
+<p><hr><h3><a name="plip_support">
+	Is PLIP (Parallel Line IP) supported
+</a></h3>
+There are patches from Martin Husemann which add PLIP support to
+NetBSD/i386, submitted as <a
+href="http://www.NetBSD.org/cgi-bin/query-pr-single.pl?number=1278">PR 1278</a>.
+The patches at the end of the PR should apply to the NetBSD 1.3.2 source tree.
+
+<ul>
+<li>Ensure you have <a href="#how_to_build_a_kernel">built a kernel</a> with
+    DEBUG enabled in the config file.
+<li>"<b>gdb netbsd.gdb</b>" (in kernel compile directory).
+<li>"<b>target kcore /var/crash/netbsd.0.core</b>" at the gdb prompt.
+</ul>
+You can use the usual gdb commands, such as 't'.
+
+<p><hr><h3><a name="how_to_add_a_kernel_to_a_boot_floppy">
+	How to add a kernel to a boot floppy
+</a></h3>
+Some ports are already setup to build a boot floppy by
+"<b><tt>cd /usr/src/distrib/<em>&lt;ARCH&gt;</em>/floppies ; make </tt></b>".
+(You may need to build the INSTALL kernel manually before running this.
+If you have an existing <b>boot.fs</b> image you can replace the kernel with:
+<ol>
+<li><b><tt>vnconfig -c vnd0 boot.fs</tt></b>
+<li><b><tt>mount /dev/vnd0a /mnt</tt></b>
+<li><b><tt>gzip -c -9 &lt; netbsd &gt; /mnt/netbsd.gz</tt></b>
+<li><b><tt>umount /mnt</tt></b>
+<li><b><tt>vnconfig -u vnd0</tt></b>
+</ol>
+This assumes you have "<tt>pseudo-device vnd</tt>" in your kernel config file,
+and a ready to use kernel.
+
+<p><hr><h3><a name="precompiled_packages">
+	Where to find precompiled programs
+</a></h3>
+NetBSD 1.3 and later support a <a
+href="../Documentation/netbsd/packages.html">'package'</a> collection for many
+items of third party software. Precompiled binaries are available at
+<a href="ftp://ftp.netbsd.org/pub/NetBSD/packages">
+ftp://ftp.netbsd.org/pub/NetBSD/packages</a>, or a mirror thereof
+(each NetBSD port has its own subdirectory). An <a
+href="ftp://ftp.netbsd.org/pub/NetBSD/packages/pkgsrc/README.html">
+HTML index</a> is also available.<p>
+To install packages you can either:
+<ul>
+<li>Copy a package file to your machine and run
+"<b><tt>pkg_add&nbsp;<i>package.tgz</i></tt></b>"
+<li>Install direct from the ftp site.
+For example, to install pine on a NetBSD/sparc 1.3 system:
+"<b><tt>pkg_add&nbsp;ftp://ftp.netbsd.org/pub/NetBSD/packages/1.3/sparc/All/pine-3.96.tgz</tt></b>".
+</ul>
+
+<p><hr><h3><a name="packages">
+	How to build/download programs
+</a></h3>
+NetBSD 1.3 and later support a <a
+href="../Documentation/netbsd/packages.html">'package'</a> collection
+that enables freely available third-party software to be built
+easily on NetBSD hosts. Once the software has been built, it is
+manipulated with the pkg_* tools so that installation and
+de-installation, printing of an inventory of all installed packages
+and retrieval of one-line comments or more verbose descriptions
+are simple.
+<p><a href="#precompiled_packages">Precompiled binaries</a>
+for various architectures are also available.
+
+<p><hr><h3><a name="unlimit">
+	Compiling fails with '<b>virtual memory exhausted</b>'
+</a></h3>
+Try "<b><tt>unlimit datasize</tt></b>".<p>
+NetBSD sets resource limits on a per process basis. The current values can
+be displayed with "<b><tt>limit</tt></b>", and set with
+"<b><tt>limit&nbsp;<em>resource</em>&nbsp;<em>value</em></tt></b>", or
+unlimited with "<b><tt>unlimit&nbsp;<em>resource</em></tt></b>". More
+details are available on the <b>getrlimit(2)</b> manual page
+("<b><tt>man getrlimit</tt></b>").
+
+<p><hr><h3><a name="unable_to_run_x">
+	Unable to run X - '<b>xinit: not found</b>'
+</a></h3>
+You need /usr/X11R6/bin in your path. As root add
+'<b><tt>set path = ( $path /usr/X11R6/bin )</tt></b>' to /etc/csh.cshrc, and
+start a new shell.
+
+<a name="ldconfig_and_x">&nbsp;</a> <!-- XXX Can go away sometime -->
+<p><hr><h3><a name="shared_libraries_and_x">
+'X programs fail with '<b>lib<em>XXXX</em>.so.<em>NN</em>: No such file...</b>'
+</a></h3>
+As root, edit /etc/ld.so.conf and add the line:
+<pre>
+    /usr/X11R6/lib
+</pre>
+while you are there you should probably ensure it also contains:
+<pre>
+    /usr/pkg/lib
+</pre>
+<em>(You <b>are</b> using the
+<a href="../Documentation/netbsd/packages.html">NetBSD
+packages system</a> for adding additional programs?)</em>.<br>
+Then run "<b><tt>ldconfig -v</tt></b>", among the output you should see lines
+of the form: 'Adding /usr/X11R6/lib/libXIE.so.6.0'.
+<p>
+<b>What are shared libraries?</b><br>
+On order to save both disk and memory space most NetBSD ports use 'shared
+libraries'. This allows one copy of each library (libXmu.so.6.0) to be loaded
+into memory for multiple programs (xterm, fvwm2, etc). The standard system
+shared libraries live in /usr/lib, but NetBSD needs to be told where to find
+any additional libraries (such as those for X applications). To do this
+the should be added to '/etc/ld.so.conf'.
+
+<p><hr><h3><a name="xconsole">
+	Console output (such as from 'su') garbles X display.
+</a></h3>
+The system is outputting a line to the console indicating something has
+happened (such as 'su'). You should really run xconsole or
+one 'xterm -C' to capture this console output.
+<p>
+You may need to ensure your kernel is compiled with the following enabled:
+<pre>	options  UCONSOLE  # allow anyone to steal the virtual console</pre>
+See <a href="#how_to_build_a_kernel">How to build a kernel</a> for
+details on how to build your own kernels.
+
+<p><hr><h3><a name="unable_to_locate_xm">
+	Compiling X programs fail - unable to locate libXm
+</a></h3>
+Xm does not come with the standard X11 environment. It is part of 
+<a href="http://www.camb.opengroup.org/desktop/motif/">Motif</a>, which
+is a commercial graphical user interface.<p>
+A freeware implementation of Motif called
+<a href="http://www.lesstif.org/">Lesstif</a> is also available.
+
+<p><hr><h3><a name="unable_to_locate_xpm">
+	Compiling X programs fail - unable to locate xpm.h
+</a></h3>
+xpm.h is part of the X PixMap library, used by many programs to allow more
+multi (than two) colour icons. It is available as part of the
+<a href="../Documentation/netbsd/packages.html">NetBSD packages collection</a>.
+
+<p><hr><h3><a name="problems_becoming_root">
+	Problems logging in as, or 'su'ing to, root
+</a></h3>
+This covers a number of possible problems:
+<ul>
+    <li>Unable to login directly as root<br>
+	NetBSD will only allow direct root login on terminals marked as
+	'secure' in /etc/ttys. To be able to login directly as root across the
+	network you will need to add 'secure' to the end of every network
+	terminal line. For those who prefer not to have to edit each line you
+	can (as root) type:<br>
+	<dl>
+	<dd>
+	<b><tt>cd /etc<br>
+	cp ttys ttys.orig<br>
+	cat ttys.orig | sed 's/network$/network secure/' &gt; ttys</tt></b>.
+	</dl>
+    <p><li>Unable to 'su' to root<br>
+	NetBSD checks the contents of the 'wheel' group in /etc/group for any
+	attempt to su to root. If it is empty (wheel:*:0:) then anyone
+	with the correct password can su to root. Otherwise it should be
+	a comma separated (no spaces!) list of the permitted accounts.
+    <p><li>Unable to 'su' to anyone<br>
+        Type "<b><tt>ls -l /usr/bin/su</tt></b>". The first 'word' on the
+	output should be '-r-sr-xr-x'. If it is anything else (such as
+	'-r-xr-xr-x'). Type (as root) "<b><tt>chmod 4555 /usr/bin/su</tt></b>".
+	The 's' in that position
+	indicates it is a 'setuid' binary, which in this case allows 'su' to
+	run with root privileges.<br>
+	This problem can be caused by not giving the '-p' (preserve
+	permissions) flag to tar when extracting the distribution. If this was
+	the case then re-extract all the tarfiles (except etc.tar.gz) as
+	various other utilities will also be broken.
+</ul>
+
+<p><hr><h3><a name="how_to_add_something_to_your_path">
+	How to add something to your path
+</a></h3>
+For example, to add /usr/X11R6/bin to your path, edit the file <em>.login</em>
+in your home directory and add the following:<br>
+<b><tt>set path = ( /usr/X11R6/bin $path )</tt></b><br>
+This only works for the C-shell (<em>csh</em>), and derivatives such as
+<em>tcsh</em>.
+
+<p><hr><h3><a name="setting_something_for_all_users">
+	Setting something for all users
+</a></h3>
+You can set something for all users by adding it to one of the following files:
+<ul>
+<li><b><tt>/etc/csh.cshrc</tt></b><br>
+    This is run every time a new shell is opened, before any
+    <b><tt>.cshrc</tt></b> in the user's home directory.
+<li><b><tt>/etc/csh.login</tt></b><br>
+    This is run when the user logs in, after anything in
+    <b><tt>/etc/csh.cshrc</tt></b>, but before any <b><tt>.login</tt></b>
+    in the user's home directory.
+<li><b><tt>/etc/csh.logout</tt></b><br>
+    This is run when the user logs out, before any <b><tt>.logout</tt></b> in
+    the user's home directory.
+</ul>
+
+<p><hr><h3><a name="rebuilding_dev">
+	Rebuilding /dev
+</a></h3>
+The /dev directory contains the necessary device files for accessing hardware
+and pseudo devices. If it becomes damaged, much strangeness can ensue.<br>
+To rebuild the /dev directory, you should first boot single user (it should
+be possible to perform while multiuser, but not recommended), then:
+<ul>
+<b><tt>
+<li>mkdir /newdev
+<li>cd /newdev
+<li>cp /dev/M* .
+<li>sh MAKEDEV all
+<li>cd /
+<li>mv dev olddev; mv newdev dev
+<li>rm -r olddev
+</tt></b>
+</ul>
+
+
+<p><hr><h3><a name="running_appletalk">
+	Running Appletalk
+</a></h3>
+NetBSD supports 'netatalk', which enables unix machines to communicate with
+appletalk machines over ethernet (but not localtalk). This allows MacOS
+machines to read filesystems and print to printers via a NetBSD machine, and
+for the NetBSD machine to print to AppleTalk printers.
+The necessary source is available on ftp.netbsd.org (or mirrors) in
+<a href="ftp://ftp.netbsd.org/pub/NetBSD/misc/netatalk/">
+/pub/NetBSD/misc/netatalk</a>.
+
+<p><hr><h3><a name="connecting_a_ups">
+	Connecting a UPS to a NetBSD system
+</a></h3>
+Connecting one is trivial, but monitoring it such that the NetBSD can shut down
+cleanly when the power is about to fail requires a little more:<br>
+Simon J. Gerraty has a page on using a
+<a href="http://www.quick.com.au/sjg/apcmon.html">APC Smart-UPS</a>.
+If you are writing your own software to talk to the UPS you will probably need
+to set the softcar flag via tcsetattr(). Wolfgang Rupprecht has researched the
+field briefly:
+<dl>
+<dd>
+There two different types of UPS interfaces, sometimes both are
+available on the same UPS. The 9-pin connector on the UPS is never
+a wired up as a normal PC-style rs-232.  At best its a three-wire
+rs-232 interface, with the pins rearanged just to keep things
+interesting.  At worst its a contact closure signal that is not
+even at the rs-232 signalling voltages and one must use a funny
+cable with level-translators in it to convert the voltages to
+something the rs-232 port can even see transitions on.  The signal
+from the latter type of interface can only send out a one-bit
+(normal / powerfail) signal.  It must be run into some modem-control
+line such as DCD and is then detected via a program that checks
+the status of that modem control line.  Unless one is careful, its
+possible to confuse the modem-control-line-only cable that come
+with some UPS's as a real rs-232 cable.
+<p>
+Poking around APC web page, and a few promising altavista hits
+revealed that they have 3 basic interfaces.  Low end UPS's ("back
+UPS") have only the modem-control line type interface.  The two high
+end lines ("Back UPS Pro", "Smart UPS") have both combination modem
+control line and 3-wire rs-232 signals available.  In both cases one
+needs to use one of two special cables.  The cable for the modem
+control line interface has transistors and diodes in it to do the
+level shifting (and power grabbing from some of the other wires).  It's
+a real kludge, with the word UGLY coming to mind as the correct
+modifier.  The second type of cable will get the UPS talking serially,
+but some of the 3-rd party docs indicated that the UPS will only talk
+if you send 2 stop bits.  The protocols don't appear to be officially
+documented and the back-UPS pro and smart UPS appear to talk different
+serial line protocols.  Only the back-UPS pro line appears to have any
+3-rd party support, and many of the details of the protocol are only
+guessed at.
+<p>
+Competitors all seem to have similar offerings (modem control line
+only, and proprietary serial line protocols with special cables).  In
+no case could I find someone with an openly documented standard.
+</dl>
+
+<p><hr><h3><a name="hash_map_Alias0">
+	What does '<b>hash map "Alias0":unsafe map file /etc/aliases: No such
+	file or directory</b>' mean?
+</a></h3>
+You can fix this by typing '<b><tt>newaliases</tt></b>' as root.<br>
+Sendmail reports this when the aliases file is not present. Note that
+sendmail actually uses /etc/aliases.db (which is built from /etc/aliases), so
+the error message can be a little misleading. This should only really be
+noticed in NetBSD 1.3 - other versions have a different /etc/sendmail.cf which
+instructs sendmail to automatically rebuild /etc/aliases.db as needed.
+If you are running NetBSD 1.3 you should probably upgrade to
+<a href="ftp://ftp.netbsd.org/pub/NetBSD/NetBSD-1.3.2/">NetBSD 1.3.2</a>.
+
+<hr>
+<table><tr>
+  <td>
+    <a href="../index.html">
+    <img src="../images/NetBSD-banner.gif" alt="NetBSD&nbsp;Home"></a>
+  </td><td>
+    <a href="../index.html">Home Page</a>
+  </td>
+</tr></table>
+
+<hr>
+<address>
+  www@NetBSD.ORG<br>
+  $NetBSD: index.html,v 1.34 1998/08/26 00:00:03 abs Exp $<br>
+  <a href="../Misc/disclaimer.html">Copyright (c) 1998
+    The NetBSD Foundation, Inc.  ALL RIGHTS RESERVED.</a>
+</address>
+
+</body>
+</html>

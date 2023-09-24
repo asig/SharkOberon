@@ -1,0 +1,28 @@
+; RCS $Revision: 1.2.2.1 $
+; Checkin $Date: 1996/02/07 15:50:34 $
+; Revising $Author: jporter $
+;
+
+LIBRARY   ARMULATE
+
+CODE      LOADONCALL DISCARDABLE
+DATA      LOADONCALL SINGLE
+
+EXPORTS
+    ARMul_RDI_open                      @1
+    ARMul_RDI_close                     @2
+    ARMul_RDI_read                      @3
+    ARMul_RDI_write                     @4
+    ARMul_RDI_CPUread           @5
+    ARMul_RDI_CPUwrite          @6
+    ARMul_RDI_CPread            @7
+    ARMul_RDI_CPwrite           @8
+    ARMul_RDI_setbreak          @9
+    ARMul_RDI_clearbreak        @10
+    ARMul_RDI_setwatch          @11
+    ARMul_RDI_clearwatch        @12
+    ARMul_RDI_execute           @13
+    ARMul_RDI_step                      @14
+    ARMul_RDI_info                      @15
+    ARMul_RDI_cpunames          @16
+

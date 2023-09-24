@@ -1,0 +1,3 @@
+get app/root 0x80000
+get app/copydata 0x84800
+let pc=0x80000

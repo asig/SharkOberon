@@ -1,0 +1,29 @@
+CC=/xdevt/rel200/gccsunos/armcc -bi -c
+LD= /xdevt/rel200/gccsunos/armlink
+LIB=/xdevt/rel200/lib/armlib.32b
+
+.c.o:
+	$(CC) -APCS 3/32/noswst $< 
+
+all: app/root
+
+app/root: main.o uue.o getdata.o overmgrs.o initapp.o maininit.o
+	$(LD) -bin -scatter scatdes -o app  maininit.o main.o overmgrs.o uue.o \
+              getdata.o initapp.o  $(LIB) -map -symbols - -first maininit.o \
+              -list tS.map -v
+
+maininit.o: maininit.s
+	armasm -bi -APCS 3/32/noswst  maininit.s 
+
+initapp.o: initapp.s
+	armasm -bi -APCS 3/32/noswst  initapp.s 
+
+overmgrs.o: overmgrs.s
+	armasm -bi -APCS 3/32/noswst  overmgrs.s 
+
+main.o: main.c
+
+uue.o: uue.c
+
+getdata.o: getdata.c
+
